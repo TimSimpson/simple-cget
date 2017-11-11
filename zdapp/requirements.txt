@@ -1,0 +1,11 @@
+# This is to show how to use a requirements.txt file.
+
+# Here we give it the local path to zdlib...
+../zdlib
+
+# But if this was a stand alone repo we might tell it to install with this (with the comment character removed, of course):
+
+# TimSimpson/zdlib
+
+# cget is very flexible in how it retrieves packages. See here for more info:
+# http://cget.readthedocs.io/en/latest/src/package_src.html
