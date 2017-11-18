@@ -53,7 +53,7 @@ Thankfully, Cget can easily create new directories for package stuff as well as 
 I call these `cget-envs`, which is a name I thought of and isn't endorsed by anyone. Think of it as a way of keeping all your C++ junk separated.
 
 
-## Walk-through ##
+## Walk-through - The Basics of Creating and Using a CMake Package ##
 
 ### Installing a Simple Package ###
 
@@ -104,7 +104,7 @@ Here's an important thing: imagine if `zdapp` lived in it's own git repository. 
 This is the same as when other languages like Rust specifies a dependency using Cargo. In the Rust community people know to use Cargo, so this is culturally acceptable. The difference here is:
 
 * the idiomatic use of Cget is still controversial, meaning not everyone agrees this is how to do things in CMake (in other words, you may want to clarify the practices you're following in your projects docs).
-* "find_package" by itself will never install the package for you.
+* "find_package" by itself only finds packages, it won't download and install them for you.
 * Cargo uses a centralized package repository that everyone knows about. For CMake, the only way to know what "zd" (or any other dependency specified with `find_package`) is in the first place is to Google it.
 
 This second two items is where cget comes in. Cget allows for users to easily install CMake packages from the command line, or using a `requirements.txt` file where all of a project's dependencies can be specified ([for an example, see here](https://github.com/tzlaine/yap/blob/master/requirements.txt)).
@@ -149,13 +149,15 @@ Here's an example of how to tell cget to use the toolchain file for Emscripten:
 
 (Note: This requires the environment variable EMSCRIPTEN to exist and point to the root of the Emscripten directory. Installing and using Emscripten is outside the scope of this tutorial).
 
+Cget does this by creating a second toolchain file (the way it did before) that includes the one you specify. This allows it to override the directories used by the build process to the directory cget creates.
+
 Run it with:
 
     node cget/bin/zdapp.js
 
 TODO: The above doesn't work and I'm not sure why. The below alternative works fine.
 
-Alternatively, you can build it like this:
+Alternatively, you can build it by invoking CMake directly and passing it cget's toolchain:
 
     mkdir build
     cd build

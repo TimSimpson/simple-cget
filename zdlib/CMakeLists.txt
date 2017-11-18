@@ -60,7 +60,7 @@ include(\"\${CMAKE_CURRENT_LIST_DIR}/zd-targets.cmake\")
 ")
 
 write_basic_package_version_file("${PROJECT_BINARY_DIR}/zd-config-version.cmake"
-    VERSION 1.64
+    VERSION 1.0
     COMPATIBILITY AnyNewerVersion
 )
 
